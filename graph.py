@@ -22,10 +22,10 @@ class LineGraph:
         points = [None] * self.w
         draw = ImageDraw.Draw(self.im)
         for a in range(self.w):
-            x = (a*self.intx) + self.stx
+            x = (a *self.intx) + self.stx
             dic.update({'x': x})
             b = eval(op, dic)
-            y = round((b/self.inty) - self.sty)
+            y = round(((b - self.sty)/self.inty))
             points[a] = (a, y)
         for l in points:
             try:
@@ -35,14 +35,14 @@ class LineGraph:
                 pass
             last = l
 
-    def save(self, out = "img.png", flip = True):
+    def save(self, out = "line.png", flip = True):
         if flip == False:
             final = self.im
         else:
             final = self.im.transpose(Image.FLIP_TOP_BOTTOM)
         final.save(out)
 
-    def graph(self, fun = "x", dict = {}, color = "black", width = 100, height = 100, interx = 1, intery = 1, stx = 0, sty = 0, thk = 3, out = "img.png", flip = True):
+    def graph(self, fun = "x", dict = {}, color = "black", width = 100, height = 100, interx = 1, intery = 1, stx = 0, sty = 0, thk = 3, out = "line.png", flip = True):
         self.w = width
         self.h = height
         self.intx = interx
